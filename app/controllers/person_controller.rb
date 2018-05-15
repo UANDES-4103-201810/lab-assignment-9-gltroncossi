@@ -1,25 +1,19 @@
 class PersonController < ApplicationController
-
-
   def index
-    if  person_params.role =="actor"
-      @actor = Actor.create(person_params)
-    else
-      @director = Director.create(person_params)
-    end
+    @actors = Actor.all
+    @directors = Director.all
   end
 
   def new
-
   end
 
   def create
 
+    if params[:type] == "Actor"
+      @actor = Actor.create(first_name:params[:first_name], last_name:params[:last_name], birth_date:params[:birth_date], description:params[:description])
+    else
+      @director = Director.create(first_name:params[:first_name], last_name:params[:last_name], birth_date:params[:birth_date], description:params[:description])
+    end
+
   end
-
-
-  def person_params
-    params.require(:person).permit(:first_name, :last_name, :birth_date, :description, :role)
-  end
-
 end

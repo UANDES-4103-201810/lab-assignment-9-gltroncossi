@@ -1,23 +1,47 @@
-<html>
-<body>
-<h1>Create Actors and Directors!</h1>
+<p id="notice"><%= notice %></p>
 
-  <%= form_tag('/person/create', method: "post") do%>
-    <%= label_tag ("Actor:") %>
-    <%= radio_button_tag(:role, "actor") %>
-    <%= label_tag ("Director:") %>
-    <%= radio_button_tag(:role, "director") %>
-    <%= label_tag(:q, "First Name") %>
-    <%= text_field_tag (:first_name) %>
-    <%= label_tag(:q, "Last Name") %>
-    <%= text_field_tag (:last_name) %>
-    <%= label_tag(:q, "Description")%>
-    <%= text_field_tag (:description) %>
-    <%= label_tag(:q, "Birth Date") %>
-    <%= text_field_tag (:birth_date) %>
-    <%= submit_tag("Submit") %>
+<h1>Persons</h1>
 
+<table>
+  <thead>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Birth</th>
+    <th>Description</th>
+    <th>Type</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @actors.each do |actor| %>
+    <tr>
+      <td><%= actor.first_name %></td>
+      <td><%= actor.last_name %></td>
+      <td><%= actor.birth_date %></td>
+      <td><%= actor.description %></td>
+      <td>Actor</td>
+      <td><%= link_to 'Show', actor %></td>
+      <td><%= link_to 'Edit', edit_actor_path(actor) %></td>
+      <td><%= link_to 'Destroy', actor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
   <% end %>
-</body>
-</html>
+  <% @directors.each do |director| %>
+    <tr>
+      <td><%= director.first_name %></td>
+      <td><%= director.last_name %></td>
+      <td><%= director.birth_date %></td>
+      <td><%= director.description %></td>
+      <td>Director</td>
+      <td><%= link_to 'Show', director %></td>
+      <td><%= link_to 'Edit', edit_director_path(director) %></td>
+      <td><%= link_to 'Destroy', director, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
 
+<br>
+
+<%= link_to 'New Person', persons_new_path %>
