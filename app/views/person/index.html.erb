@@ -1,0 +1,23 @@
+<html>
+<body>
+<h1>Create Actors and Directors!</h1>
+
+  <%= form_tag('/person/create', method: "post") do%>
+    <%= label_tag ("Actor:") %>
+    <%= radio_button_tag(:role, "actor") %>
+    <%= label_tag ("Director:") %>
+    <%= radio_button_tag(:role, "director") %>
+    <%= label_tag(:q, "First Name") %>
+    <%= text_field_tag (:first_name) %>
+    <%= label_tag(:q, "Last Name") %>
+    <%= text_field_tag (:last_name) %>
+    <%= label_tag(:q, "Description")%>
+    <%= text_field_tag (:description) %>
+    <%= label_tag(:q, "Birth Date") %>
+    <%= text_field_tag (:birth_date) %>
+    <%= submit_tag("Submit") %>
+
+  <% end %>
+</body>
+</html>
+
